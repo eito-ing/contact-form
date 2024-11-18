@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mt-5">
     <h2>お問い合わせ</h2>
-    <form action="#" method="POST" onsubmit="return validateForm()">
+    <form action="{{ route('contact.submit') }}" method="POST" onsubmit="return validateForm()">
         @csrf <!-- この行はフロントエンドのみの場合、削除も可能です -->
         <div class="form-group mb-3">
             <label for="name">氏名 <span class="text-danger">*</span></label>
