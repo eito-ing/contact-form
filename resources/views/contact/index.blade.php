@@ -14,6 +14,7 @@
                 <th>メールアドレス</th>
                 <th>会社名</th>
                 <th>問い合わせ内容</th>
+                <th>送信日時</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,8 @@
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->company ?? '会社名なし' }}</td>
                     <td>{{ $contact->message }}</td>
+                    <td>{{ $contact->created_at->format('Y年m月d日 H時i分') }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>
