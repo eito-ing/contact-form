@@ -2,31 +2,35 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
-    <h2>お問い合わせ</h2>
-    <form action="{{ route('contact.submit') }}" method="POST" onsubmit="return validateForm()">
-        @csrf <!-- この行はフロントエンドのみの場合、削除も可能です -->
-        <div class="form-group mb-3">
-            <label for="name">氏名 <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="name" name="name" >
-            <div class="invalid-feedback">氏名を入力してください。</div>
+<div class="py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">お問い合わせ</h2>
+            <form action="{{ route('contact.submit') }}" method="POST" onsubmit="return validateForm()">
+                @csrf
+                <div class="form-group mb-3">
+                    <label for="name">氏名 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" name="name">
+                    <div class="invalid-feedback">氏名を入力してください。</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="company">会社名</label>
+                    <input type="text" class="form-control" id="company" name="company">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="email">メールアドレス <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email">
+                    <div class="invalid-feedback">有効なメールアドレスを入力してください。</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="message">問い合わせ内容 <span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                    <div class="invalid-feedback">問い合わせ内容を入力してください。</div>
+                </div>
+                    <button type="submit" class="btn btn-primary">送信</button>
+            </form>
         </div>
-        <div class="form-group mb-3">
-            <label for="company">会社名</label>
-            <input type="text" class="form-control" id="company" name="company">
-        </div>
-        <div class="form-group mb-3">
-            <label for="email">メールアドレス <span class="text-danger">*</span></label>
-            <input type="email" class="form-control" id="email" name="email" >
-            <div class="invalid-feedback">有効なメールアドレスを入力してください。</div>
-        </div>
-        <div class="form-group mb-3">
-            <label for="message">問い合わせ内容 <span class="text-danger">*</span></label>
-            <textarea class="form-control" id="message" name="message" rows="4"></textarea>
-            <div class="invalid-feedback">問い合わせ内容を入力してください。</div>
-        </div>
-        <button type="submit" class="btn btn-primary">送信</button>
-    </form>
+    </div>
 </div>
 @endsection
 
