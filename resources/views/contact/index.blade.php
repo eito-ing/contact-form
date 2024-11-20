@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="sticky-top my-4">
+<div class="mt-5">
     <h2 class="text-center fw-bold mb-0">問い合わせ内容一覧</h2>
 </div>
 

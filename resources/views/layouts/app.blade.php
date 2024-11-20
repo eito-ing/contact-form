@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <div class="container mt-4">
         <!-- ナビゲーションバー -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
@@ -44,12 +43,11 @@
         </nav>
 
         <!-- ページのメインコンテンツ -->
-        <main class="py-4">
+        <main class="container py-4">
             @yield('content')
 
         </main>
 
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
