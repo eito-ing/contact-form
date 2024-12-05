@@ -20,7 +20,7 @@
                         <th style="width: 15%;">氏名</th>
                         <th style="width: 20%;" class="text-nowrap">メールアドレス</th>
                         <th style="width: 20%;" class="text-nowrap">会社名</th>
-                        <th style="width: 25%;" >問い合わせ内容</th>
+                        <th style="width: 25%;">問い合わせ内容</th>
                         <th style="width: 15%;">送信日時</th>
                     </tr>
                 </thead>
@@ -48,6 +48,10 @@
         </div>
     </div>
 
+    <!-- ページネーション -->
+    <div class="d-flex justify-content-center mt-4">
+    {{ $contacts->links('vendor.pagination.bootstrap-5') }}
+    </div>
 
     <!-- モーダル -->
     @foreach ($contacts as $contact)
