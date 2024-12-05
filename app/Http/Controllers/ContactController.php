@@ -44,13 +44,4 @@ class ContactController extends Controller
         // ビューにデータを渡す
         return view('contact.index', compact('contacts'));
     }
-
-    public function showAdminContacts()
-    {
-        // 問い合わせ内容を全件取得
-        $contacts = Contact::all();
-
-        // 管理者向けのビューにデータを渡す
-        return view('contact.index', compact('contacts'));
-    }
 }
