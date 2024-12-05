@@ -46,6 +46,9 @@ class ContactController extends Controller
         if ($request->filled('company')) {
            $query->where('company', 'like', '%' . $request->company . '%');
         }
+        if ($request->filled('message')) {
+            $query->where('message', 'like', '%' . $request->message . '%');
+         }
         if ($request->filled('from_date')) {
           $query->whereDate('created_at', '>=', $request->from_date);
         }

@@ -12,7 +12,7 @@
 @else
 
     <!-- 検索フォーム -->
-    <div class="mt-3">
+    <div class="mt-5">
         <form method="GET" action="{{ route('contact.index') }}" class="row g-3">
             <div class="form-group row">
                 <label for="name" class="col-md-2 col-form-label">氏名</label>
@@ -32,6 +32,11 @@
                     <input type="text" name="company" id="company" class="form-control" placeholder="会社名"
                         value="{{ request('company') }}">
                 </div>
+                <label for="message" class="col-md-2 col-form-label">問い合わせ内容</label>
+                <div class="col-md-4">
+                    <input type="text" name="message" id="message" class="form-control" placeholder="問い合わせ内容"
+                        value="{{ request('message') }}">
+                </div>
             </div>
             <div class="form-group row">
                 <label for="from_date" class="col-md-2 col-form-label">開始日</label>
@@ -44,9 +49,8 @@
                     <input type="date" name="to_date" id="to_date" class="form-control" value="{{ request('to_date') }}">
                 </div>
             </div>
-            <div class="col-md-2">
-                <label for="search"></label>
-                <button type="submit" class="btn btn-primary w-100">検索</button>
+            <div class="col-md-12 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary shadow-sm">検索</button>
             </div>
         </form>
     </div>
