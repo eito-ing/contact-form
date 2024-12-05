@@ -7,6 +7,18 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
+    public function showContactForm()
+    {
+        // 問い合わせフォームを表示
+        return view('contact.form');
+    }
+
+    public function showContactPerfect()
+    {
+        // 問い合わせ完了画面を表示
+        return view('contact.perfect');
+    }
+
     public function submit(Request $request)
     {
         // サーバーサイドのバリデーション
@@ -23,12 +35,22 @@ class ContactController extends Controller
         // 問い合わせ完了画面にリダイレクト
         return redirect()->route('contact.perfect')->with('status', 'お問い合わせが送信されました！');
     }
+
     public function index()
     {
         // ページネーションを設定 (1ページに表示する件数を10件に設定)
         $contacts = Contact::paginate(10);
 
         // ビューにデータを渡す
+        return view('contact.index', compact('contacts'));
+    }
+
+    public function showAdminContacts()
+    {
+        // 問い合わせ内容を全件取得
+        $contacts = Contact::all();
+
+        // 管理者向けのビューにデータを渡す
         return view('contact.index', compact('contacts'));
     }
 }
