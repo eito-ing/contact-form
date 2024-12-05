@@ -15,11 +15,7 @@ Route::get('/contact/perfect', function () {
 })->name('contact.perfect');
 
 // 問い合わせの送信処理
-// 問い合わせの送信処理
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
-
-
-
 
 // 管理者専用: 問い合わせ内容確認画面 (認証が必要)
 Route::get('/admin/contact', function () {
@@ -33,3 +29,8 @@ Route::post('/login', [AuthController::class, 'login']); // ログイン処理
 
 // ログアウト処理
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // ログアウト
+
+//ページネーション
+Route::prefix('admin')->group(function () {
+    Route::get('/contact', [ContactController::class, 'index'])->name('admin.contact.index');
+});
