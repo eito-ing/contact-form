@@ -7,6 +7,19 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
+    
+    public function showContactForm()
+    {
+        // 問い合わせフォームを表示
+        return view('contact.form');
+    }
+
+    public function showContactPerfect()
+    {
+        // 問い合わせ完了画面を表示
+        return view('contact.perfect');
+    }
+
     public function submit(ContactRequest $request)
     {
         // バリデーション済みデータを取得
