@@ -10,6 +10,46 @@
         <p class="text-center text-muted">現在、問い合わせ内容はありません。</p>
     </div>
 @else
+
+    <!-- 検索フォーム -->
+    <div class="mt-3">
+        <form method="GET" action="{{ route('contact.index') }}" class="row g-3">
+            <div class="form-group row">
+                <label for="name" class="col-md-2 col-form-label">氏名</label>
+                <div class="col-md-4">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="氏名"
+                        value="{{ request('name') }}">
+                </div>
+                <label for="email" class="col-md-2 col-form-label">メールアドレス</label>
+                <div class="col-md-4">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="メールアドレス"
+                        value="{{ request('email') }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="company" class="col-md-2 col-form-label">会社名</label>
+                <div class="col-md-4">
+                    <input type="text" name="company" id="company" class="form-control" placeholder="会社名"
+                        value="{{ request('company') }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="from_date" class="col-md-2 col-form-label">開始日</label>
+                <div class="col-md-4">
+                    <input type="date" name="from_date" id="from_date" class="form-control"
+                        value="{{ request('from_date') }}">
+                </div>
+                <label for="to_date" class="col-md-2 col-form-label">終了日</label>
+                <div class="col-md-4">
+                    <input type="date" name="to_date" id="to_date" class="form-control" value="{{ request('to_date') }}">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label for="search"></label>
+                <button type="submit" class="btn btn-primary w-100">検索</button>
+            </div>
+        </form>
+    </div>
     <!-- レスポンシブテーブル -->
     <div class="mt-3">
         <div class="table-responsive" style="min-width: 430px;">
@@ -50,7 +90,7 @@
 
     <!-- ページネーション -->
     <div class="d-flex justify-content-center mt-4">
-    {{ $contacts->links('vendor.pagination.bootstrap-5') }}
+        {{ $contacts->links('vendor.pagination.bootstrap-5') }}
     </div>
 
     <!-- モーダル -->
