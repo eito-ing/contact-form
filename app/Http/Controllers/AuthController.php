@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -50,22 +51,10 @@ class AuthController extends Controller
     }
 
     // サインアップ処理
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        // 入力のバリデーションとカスタムメッセージの指定
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-        ], [
-            'name.required' => '名前は必須です。',
-            'email.required' => 'メールアドレスは必須です。',
-            'email.email' => '有効なメールアドレスを入力してください。',
-            'email.unique' => 'このメールアドレスはすでに登録されています。',
-            'password.required' => 'パスワードは必須です。',
-            'password.min' => 'パスワードは最低8文字で入力してください。',
-            'password.confirmed' => 'パスワードが一致しません。',
-        ]);
+        // バリデーション済みデータを取得
+        $validated = $request->validated();
 
         // ユーザーの作成とログイン処理
         $user = new User();
@@ -78,5 +67,4 @@ class AuthController extends Controller
 
         return redirect()->route('admin.contact.index');
     }
-
 }
