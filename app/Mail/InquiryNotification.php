@@ -4,6 +4,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Contact;
 
 class InquiryNotification extends Mailable
 {
@@ -11,7 +12,7 @@ class InquiryNotification extends Mailable
 
     public $contact;
 
-    public function __construct(array $contact)
+    public function __construct(Contact $contact)
     {
         $this->contact = $contact;
     }

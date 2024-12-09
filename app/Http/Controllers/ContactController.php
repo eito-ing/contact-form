@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use Illuminate\Http\Request;
 use App\Mail\InquiryNotification;
 use Illuminate\Support\Facades\Mail;
 
@@ -30,10 +31,10 @@ class ContactController extends Controller
         // データベースに保存
         $contact = Contact::create($validated);
 
-        try {
+            try {
             // 問い合わせ内容を管理者に送信
             Mail::to('murata@in-g.jp')->send(new InquiryNotification($contact->toArray()));
-        } catch (\Exception $e) {
+            } catch (\Exception $e) {
             \Log::error('メール送信に失敗しました: ' . $e->getMessage());
         }
 
@@ -41,8 +42,7 @@ class ContactController extends Controller
         return redirect()->route('contact.perfect')->with('status', 'お問い合わせが送信されました！');
     }
 
-
-    public function index()
+    public function index(Request $request)
     {
         // ページネーションを設定 (1ページに表示する件数を10件に設定)
         $contacts = Contact::paginate(10);
