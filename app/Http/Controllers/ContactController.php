@@ -76,8 +76,7 @@ class ContactController extends Controller
         }
 
         $contacts = $query->paginate(10)->appends($request->except('page'));
-        // ページネーションを設定 (1ページに表示する件数を10件に設定)
-        $contacts = Contact::paginate(10);
+        
 
         return view('contact.index', compact('contacts'));
     }
