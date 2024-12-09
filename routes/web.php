@@ -17,10 +17,13 @@ Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 // ログアウト処理
 Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
-// 管理者画面（認証が必要）
-Route::middleware('auth')->prefix('admin')->group(function () {
-    // 問い合わせ内容確認・ページネーション
+// 認証が必要なページ
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 });
+
+// 登録画面
+Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
 
 Route::get('/export-inquiries', [App\Http\Controllers\InquiryExportController::class, 'export'])->name('contacts.export');
