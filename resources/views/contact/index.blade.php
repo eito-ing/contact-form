@@ -6,12 +6,16 @@
 </div>
 
 @if (!$contacts->isEmpty())
+    <div class="d-flex justify-content-end mt-3">
+        <a class="btn btn-primary" href="{{ route('register') }}">サインアップ</a>
+    </div>
     <!-- エクスポートボタン -->
     <div class="d-flex justify-content-end mt-3">
         <a href="{{ route('contacts.export') }}" class="btn btn-success">
             <i class="bi bi-file-earmark-excel"></i> エクスポート
         </a>
     </div>
+
 @endif
 
 
