@@ -17,11 +17,11 @@ Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 // ログアウト処理
 Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
-// ページネーションと問い合わせ内容確認画面
-Route::prefix('admin')->group(function () {
+// 認証が必要なページ
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('admin.contact.index');
-})->middleware('auth');
+});
 
+// 登録画面
 Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
-Route::get('/admin/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('admin.contact.index');
