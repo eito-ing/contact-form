@@ -54,10 +54,31 @@ class ContactController extends Controller
 
     public function index(Request $request)
     {
+        $query = Contact::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+        if ($request->filled('email')) {
+         $query->where('email', 'like', '%' . $request->email . '%');
+        }
+        if ($request->filled('company')) {
+           $query->where('company', 'like', '%' . $request->company . '%');
+        }
+        if ($request->filled('message')) {
+            $query->where('message', 'like', '%' . $request->message . '%');
+         }
+        if ($request->filled('from_date')) {
+          $query->whereDate('created_at', '>=', $request->from_date);
+        }
+        if ($request->filled('to_date')) {
+          $query->whereDate('created_at', '<=', $request->to_date);
+        }
+
+        $contacts = $query->paginate(10)->appends($request->except('page'));
         // ページネーションを設定 (1ページに表示する件数を10件に設定)
         $contacts = Contact::paginate(10);
 
-        // ビューにデータを渡す
         return view('contact.index', compact('contacts'));
     }
 }
