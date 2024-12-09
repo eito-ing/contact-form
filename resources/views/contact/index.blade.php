@@ -5,6 +5,16 @@
     <h2 class="text-center fw-bold mb-0">問い合わせ内容一覧</h2>
 </div>
 
+@if (!$contacts->isEmpty())
+    <!-- エクスポートボタン -->
+    <div class="d-flex justify-content-end mt-3">
+        <a href="{{ route('contacts.export') }}" class="btn btn-success">
+            <i class="bi bi-file-earmark-excel"></i> エクスポート
+        </a>
+    </div>
+@endif
+
+
 @if ($contacts->isEmpty())
     <div class="mt-5">
         <p class="text-center text-muted">現在、問い合わせ内容はありません。</p>

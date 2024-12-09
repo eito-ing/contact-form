@@ -22,3 +22,5 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // 問い合わせ内容確認・ページネーション
     Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 });
+
+Route::get('/export-inquiries', [App\Http\Controllers\InquiryExportController::class, 'export'])->name('contacts.export');
