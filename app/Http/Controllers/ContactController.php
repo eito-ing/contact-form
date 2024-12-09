@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Models\User; // Userモデルをインポート
 use App\Mail\InquiryNotification;
 use Illuminate\Support\Facades\Mail;
 
@@ -31,11 +32,20 @@ class ContactController extends Controller
         // データベースに保存
         $contact = Contact::create($validated);
 
+        $adminEmails = User::pluck('email')->toArray();
+
+        // 無効なメールアドレスを除外するためのフィルタリング
+        $validEmails = array_filter($adminEmails, function ($email) {
+            return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+        });
+
+        foreach ($validEmails as $email) {
             try {
-            // 問い合わせ内容を管理者に送信
-            Mail::to('murata@in-g.jp')->send(new InquiryNotification($contact->toArray()));
+                Mail::to($email)->send(new InquiryNotification($contact));
+                \Log::info('メールが正常に送信されました: ' . $email);
             } catch (\Exception $e) {
-            \Log::error('メール送信に失敗しました: ' . $e->getMessage());
+                \Log::error('メール送信に失敗しました: ' . $e->getMessage() . '（送信先: ' . $email . '）');
+            }
         }
 
         // 問い合わせ完了画面にリダイレクト
@@ -51,3 +61,4 @@ class ContactController extends Controller
         return view('contact.index', compact('contacts'));
     }
 }
+
