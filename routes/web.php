@@ -25,3 +25,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 // 登録画面
 Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
+
+Route::get('/export-inquiries', [App\Http\Controllers\InquiryExportController::class, 'export'])->name('contacts.export');
