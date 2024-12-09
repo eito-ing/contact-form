@@ -19,7 +19,7 @@ Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->
 
 // 認証が必要なページ
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('admin.contact.index');
+    Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 });
 
 // 登録画面
